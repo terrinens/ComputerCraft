@@ -1,16 +1,18 @@
 -- 현재 슬롯에 아이템이 0개 이하라면 인벤토리를 순환하고,
 -- 동일한 아이템이 있는 슬롯까지 이동합니다.
-function SameItemSoltSelect(target)
+function SameItemSoltSelect(target, originSlot)
     if turtle.getItemCount() == 0 then
         for i = 1, 16 do
             turtle.select(i)
             local iterSlot = turtle.getItemDetail()
 
             if iterSlot ~= nil and target.name == iterSlot.name then
-                break
+                return i
             end
         end
     end
+
+    return originSlot
 end
 
 -- 인벤토리 상세 정보 제공
